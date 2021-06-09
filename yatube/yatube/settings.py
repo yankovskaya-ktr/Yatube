@@ -26,10 +26,10 @@ SECRET_KEY = '3_fh!wa$z(=rk7m+lzru!_5caf+s(i^gcp3xru_vv!i7n0!y=j'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "localhost",
-    "127.0.0.1",
-    "[::1]",
-    "testserver",
+    'localhost',
+    '127.0.0.1',
+    '[::1]',
+    'testserver',
 ]
 
 # Application definition
@@ -58,7 +58,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'yatube.urls'
 
-TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -128,7 +128,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 
@@ -136,16 +136,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Login
 
-LOGIN_URL = "/auth/login/"
+LOGIN_URL = '/auth/login/'
 
-LOGIN_REDIRECT_URL = "index"
+LOGIN_REDIRECT_URL = 'index'
 
-# LOGOUT_REDIRECT_URL = "index"
+# LOGOUT_REDIRECT_URL = 'index'
 
 
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'sent_emails')
 
 PAGINATOR_PER_PAGE = 10
 

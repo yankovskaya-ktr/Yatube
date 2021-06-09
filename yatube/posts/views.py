@@ -10,7 +10,7 @@ from .models import Follow, Group, Post, User
 
 
 def index(request):
-    post_list = Post.objects.all()
+    post_list = Post.objects.select_related('group').all()
     paginator = Paginator(post_list, settings.PAGINATOR_PER_PAGE)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
@@ -126,10 +126,7 @@ def add_comment(request, username, post_id):
 
 @login_required
 def follow_index(request):
-    follows = request.user.follower.all()
-    followed_authors = [follow.author.id for follow in follows]
-    post_list = Post.objects.filter(author__id__in=followed_authors)
-
+    post_list = Post.objects.filter(author__following__user=request.user)
     paginator = Paginator(post_list, settings.PAGINATOR_PER_PAGE)
     page_number = request.GET.get('page')
     page = paginator.get_page(page_number)
@@ -144,9 +141,8 @@ def follow_index(request):
 def profile_follow(request, username):
     user = request.user
     author = get_object_or_404(User, username=username)
-    if (author != user and not
-            Follow.objects.filter(user=request.user, author=author).exists()):
-        new_follow = Follow.objects.create(
+    if (author != user):
+        new_follow, created = Follow.objects.get_or_create(
             user=user,
             author=author,
         )
@@ -165,11 +161,11 @@ def profile_unfollow(request, username):
 def page_not_found(request, exception):
     return render(
         request,
-        "misc/404.html",
-        {"path": request.path},
+        'misc/404.html',
+        {'path': request.path},
         status=404
     )
 
 
 def server_error(request):
-    return render(request, "misc/500.html", status=500)
+    return render(request, 'misc/500.html', status=500)
