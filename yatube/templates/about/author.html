@@ -2,43 +2,24 @@
 {% block title %}Об авторе проекта{% endblock %}
 {% block content %}
 
-  <main role="main" class="container">
-    <div class="row">
-      <!-- Левый вспомогательный блок -->
-      <div class="col-md-3 mb-3 mt-1">
-        <div class="card">
-          <div class="card-body">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">
-                <div class="h3">
-                  Об авторе
-                </div> 
-              </li>
-              <li class="list-group-item">
-                <div class="h6 text-muted">
-                  <p>Екатерина Янковская</p>
-                  <p>https://github.com/yankovskaya-ktr/</p>                  
-                </div>
-              </li>
-            </ul>                                               
-          </div>                    
-        </div>                
-      </div>
-      <!-- Тело страницы -->
-      <div class="col-md-9">
-        <div class="card-body">                    
-          <div class="card-text">
-            <p> Автор сего произведения трудился над ним в поте лица, вдохновляясь и черпая силы в безмятежности хвостатого создания, 
-              в чью честь названа одна из первых
-              <a class="p-2 text-dark" href="/group/krysochki/"><font color=red>групп</font></a>
-              легендарного Yatube.</p>
-            <p>Вдохновитесь и вы (и убедитесь, что автор умеет вставлять картинки в шаблоны):</p>
-            {% load static %}
-            <p><img src="{% static "ratty.jpg" %}"></script></p>
-            
-          </div>                    
-        </div>                
-      </div>            
-    </div>        
-  </main>
+{% load static %}
+<article class="post" style="background:  rgba(94, 65, 65, 0.075);">
+  <header>
+    <div class="title">
+      <h2>Об авторе</h2>
+      <p><a href="https://github.com/yankovskaya-ktr/">GitHub</a>: Екатерина Янковская </p>
+    </div>
+    <!-- <div class="meta">
+      <a href="#" class="author"><span class="name"><a href="https://github.com/yankovskaya-ktr/">GitHub</a></span><img src="{% static 'images/avatar.jpg' %}" alt="" /></a>
+    </div> -->
+  </header>
+
+  <div style="font-family: Raleway, Helvetica, sans-serif; letter-spacing: 0.03em;">
+    <p><span class="image right"><img src="{% static 'images/av1.jpg' %}" alt="" /></span>Привет!<br>
+    Меня зовут Екатерина, мне 25. <br>
+    По образованию я лингвист, занимаюсь разработкой сценариев чат-ботов, но хочу забраться в IT подальше — до самого бэкенда)</p>
+    <p>Люблю путешествия, крыс, вкусно поесть, воздушную гимнастику — и когда то, что казалось недостижимым, начинает получаться!</p>
+    <p>Спасибо, что зашли! 🖤</p>
+  </div>   
+
 {% endblock %}

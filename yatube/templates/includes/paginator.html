@@ -1,37 +1,29 @@
 {% if page.has_other_pages %}
-<nav>
-    <ul class="pagination">
-    {% if page.has_previous %}
-    <li class="page-item">
-        <a class="page-link" href="?page={{ page.previous_page_number }}">&laquo; Предыдущая</a>
-    </li>
-    {% else %}
-    <li class="page-item disabled">
-        <span class="page-link">&laquo; Предыдущая</span>
-    </li>
-    {% endif %}
-    {% for i in page.paginator.page_range %}
-    {% if page.number == i %}
-    <li class="page-item active">
-        <span class="page-link">{{ i }}
-        <span class="sr-only">(текущая)</span>
-        </span>
-    </li>
-    {% else %}
-    <li class="page-item">
-        <a class="page-link" href="?page={{ i }}">{{ i }}</a>
-    </li>
-    {% endif %}
-    {% endfor %}
-    {% if page.has_next %}
-    <li class="page-item">
-        <a class="page-link" href="?page={{ page.next_page_number }}">Следующая &raquo;</a>
-    </li>
-    {% else %}
-    <li class="page-item disabled">
-        <span class="page-link">Следующая &raquo;</span>
-    </li>
-    {% endif %}
+  <nav>
+    <ul class="actions pagination">
+      {% if page.has_previous %}
+        <li><a class="button large previous" href="?page={{ page.previous_page_number }}">&laquo; Предыдущая</a></li>
+      {% else %}
+        <li><a class="disabled button large previous">&laquo; Предыдущая</a></li>
+      {% endif %}
+
+      {% for i in page.paginator.page_range %}
+        {% if page.number == i %}
+          <li style="font-family: Source Sans Pro, Helvetica, sans-serif; font-size: 0.7em; font-weight: 700; color: rgba(160, 160, 160, 0.3); margin: 1.5em 1em;">
+            <span >{{ i }}</span>
+          </li>
+        {% else %}
+          <li style="font-family: Source Sans Pro, Helvetica, sans-serif; font-size: 0.7em; font-weight: 700; margin-top: 1.5em">
+            <a href="?page={{ i }}">{{ i }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+
+      {% if page.has_next %}
+        <li><a class="button large next" href="?page={{ page.next_page_number }}">Следующая &raquo;</a></li>
+      {% else %}
+        <li><span class="disabled button large next">Следующая &raquo;</span></li>
+      {% endif %}
     </ul>
-</nav>
+  </nav>
 {% endif %}

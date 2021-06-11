@@ -149,7 +149,6 @@ dmypy.json
 
 **/static
 !yatube/posts/static
-yatube/posts/static/*
-!yatube/posts/static/ratty.jpg
+
 
 **/media

@@ -1,0 +1,126 @@
+<section id="sidebar">
+    <!-- Intro -->
+    {% load static %}
+    {% if author %}
+      <section id="intro">
+        <a href="#" class="logo"><img src="{% static 'images/logo.jpg' %}" alt="" /></a>
+        <header>
+            <h2><a href="{% url 'profile' author.username %}"> {{ author.get_full_name|default:"Админ" }} </a></h2>
+            <h3><a href="{% url 'profile' author.username %}">@{{ author.username }}</a></h3>
+            <p>
+                Подписчиков: {{ followed_by }} <br />
+                Подписан: {{ follows }}
+            </p>
+            <p>
+                Записей: {{ posts_count }}
+            </p>
+        </header>
+        {% if author != request.user and not post%}
+            {% if following %}
+                <a class="button large" href="{% url 'profile_unfollow' author %}" role="button">
+                Отписаться
+                </a>
+            {% else %}
+                <a class="button large" href="{% url 'profile_follow' author %}" role="button">
+                Подписаться
+                </a>
+            {% endif %}
+        {% endif %}
+      </section>
+    {% else %}
+        {% if group %}
+        <section id="intro">
+            <a href="{% url 'index' %}" class="logo"><img src="{% static 'images/logo.jpg' %}" alt="" /></a>
+            <header>
+                <h2>#{{ group.title }}</h2>
+                <h3>{{ group.description }}</h3>
+                <p>Записи сообщества</p>
+            </header>
+        </section>
+        {% else %}
+        <section id="intro">
+            <a href="{% url 'index' %}" class="logo"><img src="{% static 'images/logo.jpg' %}" alt="" /></a>
+            <header>
+                <h2><a href="{% url 'index' %}">Yatube</a></h2>
+                <p>The Last Social Media You'll Ever Need</p>
+            </header>
+        </section>
+        {% endif %}
+    {% endif %}
+    <!-- <section>
+        <div class="mini-posts">            
+            <article class="mini-post">
+                <header>
+                    <h3><a href="{% url 'index' %}">Все авторы</a></h3>
+                    
+                </header>
+            </article>            
+        </div>
+        <div class="mini-posts">            
+            <article class="mini-post">
+                <header>
+                    <h3><a href="{% url 'follow_index' %}">Подписки</a></h3>
+                    
+                </header>
+            </article>            
+        </div>
+    </section> -->
+    <section>
+        <ul class="posts">
+            <li>
+                <article>
+                    <header>
+                        <h3><a href="{% url 'about:project' %}">О проекте</a></h3>
+                        <!-- <time class="published" datetime="2015-10-20">October 20, 2015</time> -->
+                    </header>
+                    <a href="{% url 'about:tech' %}" class="image"><img src="{% static 'images/pic08.jpg' %}" alt="" /></a>
+                </article>
+            </li>
+            <li>
+                <article>
+                    <header>
+                        <h3><a href="{% url 'about:author' %}">Об авторе</a></h3>
+                        <!-- <time class="published" datetime="2015-10-20">October 20, 2015</time> -->
+                    </header>
+                    <a href="{% url 'about:author' %}" class="image"><img src="{% static 'images/pic09.jpg' %}" alt="" /></a>
+                </article>
+            </li>
+            <!-- <li>
+                <article>
+                    <header>
+                        <h3><a href="{% url 'about:tech' %}">Технологии</a></h3>
+                        <time class="published" datetime="2015-10-20">October 20, 2015</time>
+                    </header>
+                    <a href="{% url 'about:tech' %}" class="image"><img src="{% static 'images/pic10.jpg' %}" alt="" /></a>
+                </article>
+            </li> -->
+            
+        </ul>
+    </section>
+
+    <!-- About -->
+    <!-- <section class="blurb">
+        <h2>О проекте</h2>
+        <p>Mauris neque quam, fermentum ut nisl vitae, convallis maximus nisl.</p>
+        <ul class="actions">
+            <li><a href="{% url 'about:author' %}" class="button">Learn More</a></li>
+        </ul>
+    </section>
+    <section class="blurb">
+        <h2>Об авторе</h2>
+        <p>Привет! Меня зовут Екатерина</p>
+        <ul class="actions">
+            <li><a href="{% url 'about:author' %}" class="button">Learn More</a></li>
+        </ul>
+    </section> -->
+    <section class="blurb">
+        <h2>Технологии </h2>
+        <p>Разработано на Django с использованием SQLite. <br>
+            Оформление: <a href="http://html5up.net">HTML5 UP</a>.</p>
+        <ul class="actions">
+            <li><a href="{% url 'about:tech' %}" class="button">Подробнее</a></li>
+        </ul>
+    </section>
+
+    {% include 'includes/footer.html' %}
+</section>

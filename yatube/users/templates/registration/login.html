@@ -3,10 +3,16 @@
 {% block content %}
 {% load user_filters %}
 
-<div class="row justify-content-center">
-  <div class="col-md-8 p-5">
-    <div class="card">
-      <div class="card-header">Войти на сайт</div>
+<article class="post">
+  <header>
+    <div class="title">
+      <h2>Войти на сайт</a></h2>
+    </div>
+  </header>
+<!-- <div class="row justify-content-center"> -->
+  <!-- <div class="col-md-8 p-5"> -->
+    <!-- <div class="card"> -->
+      <!-- <div class="card-header">Войти на сайт</div> -->
       <div class="card-body">
         {% if form.errors %}
         <div class="alert alert-danger" role="alert">
@@ -27,7 +33,18 @@
 
         <form method="post" action="{% url 'login' %}">
           {% csrf_token %}
+
           <input type="hidden" name="next" value="{{ next }}">
+          <!-- <div class="row gtr-uniform"> -->
+            <!-- <div class="col-6 col-12-xsmall">
+              <input type="text" name="demo-name" id="demo-name" value="" placeholder="Имя пользователя" />
+            </div>
+            <div class="col-6 col-12-xsmall">
+              <input type="password" name="demo-email" id="demo-email" value="" placeholder="Пароль" />
+            </div> -->
+
+
+            
           <div class="form-group row">
               <label for="{{ form.username.id_for_label }}" class="col-md-4 col-form-label text-md-right">Имя пользователя</label>
               <div class="col-md-6">
@@ -42,18 +59,27 @@
               </div>
           </div>
 
-          <div class="col-md-6 offset-md-4">              
-              <button type="submit" class="btn btn-primary">
-                Войти
-              </button>
-              <a href="{% url 'password_reset' %}" class="btn btn-link">
-                Забыли пароль?
-              </a>
+          <div class="row gtr-uniform">
+            <div class="col-md-6 offset-md-4">       
+                <ul class="actions">       
+                <li><input type="submit" value="Войти" /></li>
+                <li><a href="{% url 'password_reset' %}" class="button">Забыли пароль?</a></li>
+                <!-- <a href="{% url 'password_reset' %}" class="btn btn-link">
+                  Забыли пароль?
+                </a> -->
+              </ul>
+            </div>
           </div>
+
+          <!-- <ul class="actions">
+            <li><input type="submit" value="Send Message" /></li>
+            <li><input type="reset" value="Reset" /></li>
+          </ul> -->
+
         </form>
       </div> <!-- card body -->
-    </div> <!-- card -->
-  </div> <!-- col -->
-</div> <!-- row -->
-
+    <!-- </div> card -->
+  <!-- </div> col -->
+<!-- </div> row -->
+</article>
 {% endblock %}

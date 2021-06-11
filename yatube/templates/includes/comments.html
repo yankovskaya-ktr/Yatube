@@ -2,30 +2,28 @@
 {% load user_filters %}
 
 {% if user.is_authenticated %}
-  <div class="card my-4">
-    <form method="post" action="{% url 'add_comment' post.author.username post.id %}" 
-    >
+  <div class="post card my-4">
+    <form method="post" action="{% url 'add_comment' post.author.username post.id %}" >
       {% csrf_token %}
-      <h5 class="card-header">Добавить комментарий:</h5>
-      <div class="card-body">
+      <h5>Добавить комментарий:</h5>
+      <!-- <div class="card-body" > -->
         <div class="form-group">
           {{ form.text|addclass:"form-control" }}
         </div>
-        <button type="submit" class="btn btn-primary">Отправить</button>
-      </div>
+        <button type="submit" class="button large">Отправить</button>
+      <!-- </div> -->
     </form>
   </div>
 {% endif %}
 
 <!-- Комментарии -->
+{% load tz %}
+
 {% for item in comments %}
-  <div class="media card mb-4">
+  <div class="post media card mb-4">
     <div class="media-body card-body">
       <h5 class="mt-0">
-        <a
-          href="{% url 'profile' item.author.username %}"
-          name="comment_{{ item.id }}"
-        >{{ item.author.username }}</a>
+        <a href="{% url 'profile' item.author.username %}" name="comment_{{ item.id }}">{{ item.author.username }}</a>, <time class="published" style="text-transform: lowercase">{{ item.created|localtime }}</time>
       </h5>
       <p>{{ item.text|linebreaksbr }}</p>
     </div>

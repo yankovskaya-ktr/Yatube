@@ -3,33 +3,12 @@
 {% block title %}Профиль автора{% endblock %}
 {% block content %}
     <main role="main" class="container">
-        <div class="row">
-            <div class="col-md-3 mb-3 mt-1">
-                {% include "includes/user_card.html" %}
-                <li class="list-group-item">
-                    {% if following %}
-                      <a
-                        class="btn btn-lg btn-light"
-                        href="{% url 'profile_unfollow' author %}" role="button">
-                        Отписаться
-                      </a>
-                    {% else %}
-                      <a
-                        class="btn btn-lg btn-primary"
-                        href="{% url 'profile_follow' author %}" role="button">
-                        Подписаться
-                      </a>
-                    {% endif %}
-                </li> 
-            </div>
-    
-            <div class="col-md-9">                 
-                {% for post in page %}    
-                    {% include "includes/post_item.html" with post=post %}
-                {% endfor %}                  
-                
-                {% include "includes/paginator.html" with items=page paginator=paginator%}
-            </div>
-        </div>
+
+      {% for post in page %}    
+          {% include "includes/post_item.html" with post=post %}
+      {% endfor %}                  
+      
+      {% include "includes/paginator.html" with items=page paginator=paginator%}
+ 
     </main>
 {% endblock %}

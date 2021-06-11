@@ -1,12 +1,13 @@
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 
 from .decorators import is_post_author
 from .forms import CommentForm, PostForm
-from .models import Follow, Group, Post, User
+from .models import Follow, Group, Like, Post, User
 
 
 def index(request):
@@ -156,6 +157,29 @@ def profile_unfollow(request, username):
     author = get_object_or_404(User, username=username)
     get_object_or_404(Follow, user=request.user, author=author).delete()
     return redirect(reverse_lazy('profile', args=(username,)))
+
+
+@login_required
+def like(request, username, post_id):
+    post = get_object_or_404(Post, id=post_id, author__username=username)
+    # if (post.author != request.user):
+    like, created = Like.objects.get_or_create(
+        user=request.user,
+        post=post,
+    )
+    if created:
+        like.save()
+    else:
+        like.delete()
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+
+# @login_required
+# def delete_like(request, username, post_id):
+#     post = get_object_or_404(Post, id=post_id, author__username=username)
+#     get_object_or_404(Like, user=request.user, post=post).delete()
+#     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
 
 
 def page_not_found(request, exception):

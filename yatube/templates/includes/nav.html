@@ -1,14 +1,51 @@
-<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-    <a class="navbar-brand" href="{% url 'index' %}"><span style="color:red">Ya</span>tube</a>
-    <nav class="my-2 my-md-0 mr-md-3">
-        {% if user.is_authenticated %}
-        Пользователь: {{ user.username }}.
-        <a class="p-2 text-dark" href="{% url 'password_change' %}">Изменить пароль</a>
-        <a class="p-2 text-dark" href="{% url 'logout' %}">Выйти</a>
-        <a class="p-2 text-dark" href="{% url 'new_post' %}">Новая запись</a>
+{% load custom_tags %}
+<header id="header">
+    <h1><a href="{% url 'index' %}">Yatube</a></h1>
+    <nav class="links">
+        {% if user.is_authenticated %}        
+        <ul>
+            <li><h1><a href="{% url 'profile' user.username %}">Ваш профиль: {{ user.username }}</a></h1></li>                       
+            <li><a href="{% url 'new_post' %}">Новая запись</a></li>
+            <li><a href="{% url 'index' %}">Главная</a></li>
+            <li><a href="{% url 'follow_index' %}">Подписки</a></li>
+        </ul>
         {% else %}
-        <a class="p-2 text-dark" href="{% url 'login' %}">Войти</a> |
-        <a class="p-2 text-dark" href="{% url 'signup' %}">Регистрация</a>
+        <ul>
+            <li><a href="{% url 'login' %}">Войти</a></li>
+            <li><a href="{% url 'signup' %}">Регистрация</a></li>
+        </ul>
         {% endif %}
     </nav>
-</nav>
+    <nav class="main">
+        <ul>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+                
+            </li>
+        </ul>
+    </nav>
+
+</header>
+
+<!-- Menu -->
+
+<section id="menu">
+    {% if user.is_authenticated %}
+
+    <section>
+        <ul class="actions stacked">
+            <li><a href="{% url 'profile' user.username %}" class="button large fit">Профиль</a></li>
+            <li><a href="{% url 'password_change' %}"class="button large fit">Изменить пароль</a></li> 
+            <li><a href="{% url 'logout' %}" class="button large fit">Выйти</a></li>            
+        </ul>
+    </section>
+
+    {% else %}
+    <section>
+        <ul class="actions stacked">
+            <li><a href="{% url 'login' %}" class="button large fit">Вход</a></li>
+            <li><a href="{% url 'signup' %}" class="button large fit">Регистрация</a></li>
+        </ul>
+    </section>
+    {% endif %}
+</section>
