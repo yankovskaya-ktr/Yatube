@@ -145,7 +145,7 @@ dmypy.json
 
 .mypy_cache
 
-**/migrations
+# **/migrations
 
 **/static
 !yatube/posts/static
