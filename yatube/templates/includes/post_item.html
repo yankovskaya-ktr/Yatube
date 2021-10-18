@@ -1,8 +1,8 @@
 <article class="post">
   <header>
     <div class="title">
-      <h2><a href="single.html">Заголовок поста</a></h2>
-      <p>Подзаголовок поста</p>
+      <h2><a href="single.html">{{ post.title }}</a></h2>
+      <p>{{ post.subtitle }}</p>
     </div>
     <div class="meta" style="text-align: left">
         <time class="published">{{ post.pub_date }}</time>
@@ -16,7 +16,7 @@
 
   <!-- Отображение картинки -->
   {% load thumbnail %}
-  <a href="single.html" class="image featured">
+  <a href="{% url 'post' post.author.username post.id %}" class="image featured">
     {% thumbnail post.image "960x339" crop="center" upscale=True as im %}
       <img class="card-img" src="{{ im.url }}">
     {% endthumbnail %} 
@@ -25,9 +25,11 @@
   <p>{{ post.text|linebreaksbr }}</p>
 
   <footer>
+    {% if not comments %}
     <ul class="actions">
-      <li><a href="{% url 'post' post.author.username post.id %}" class="button large">Подробнее</a></li>
+      <li><a href="{% url 'post' post.author.username post.id %}" class="button large">Открыть</a></li>
     </ul>
+    {% endif %}
     <ul class="stats">
       {% if user == post.author %}
       <li><a href="{% url 'post_edit' post.author.username post.id %}">Редактировать</a></li>

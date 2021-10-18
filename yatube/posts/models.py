@@ -6,6 +6,16 @@ User = get_user_model()
 
 
 class Post(models.Model):
+    title = models.CharField(
+        verbose_name='заголовок',
+        max_length=25,
+        default='Заголовок поста'
+    )
+    subtitle = models.CharField(
+        verbose_name='подзаголовок',
+        max_length=50,
+        default='Подзаголовок поста'
+    )
     text = models.TextField(
         verbose_name='текст',
         help_text='Введите текст поста'
