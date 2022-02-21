@@ -7,6 +7,8 @@
 - Оставлять лайки и комментарии
 - Подписываться на авторов
 
+http://yanktr.pythonanywhere.com/
+
 ### Технологии
 Python 3.7, Django 2.2.19, SQLite, Bootstrap, HTML5 UP.
 
