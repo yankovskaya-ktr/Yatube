@@ -14,25 +14,22 @@ Python 3.7, Django 2.2.19, SQLite, Bootstrap, HTML5 UP.
 Клонировать репозиторий и перейти в него в командной строке:
 
 ```
-git clone https://github.com/yankovskaya-ktr/Yatube.git
-cd Yatube
+> git clone https://github.com/yankovskaya-ktr/Yatube.git
+> cd Yatube
 ```
 
 Cоздать и активировать виртуальное окружение:
 
 ```
-python3 -m venv env
-source env/bin/activate
+> python3 -m venv env
+> source env/bin/activate
 ```
 
-Установить зависимости из файла requirements.txt:
+Установить зависимости из requirements.txt:
 
 ```
-python3 -m pip install --upgrade pip
-```
-
-```
-pip install -r requirements.txt
+> python3 -m pip install --upgrade pip
+> pip install -r requirements.txt
 ```
 
 Выполнить миграции:
